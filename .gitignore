@@ -1,0 +1,4 @@
+Cargo.lock
+rust-chat-server/target
+*.swp
+.vagrant/
