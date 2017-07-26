@@ -2,16 +2,12 @@
 # vi: set ft=ruby ts=2 sw=2 expandtab :
 
 PROJECT = "rust-breakout"
-HOME_DIRECTORY = "/home/vagrant"
-PROJECT_DIRECTORY = "#{HOME_DIRECTORY}/#{PROJECT}"
+PROJECT_DIRECTORY = "/home/vagrant/#{PROJECT}"
 
 DOCKER_ENV = {
   "HOST_USER_UID" => Process.euid,
-  "HOME_DIRECTORY" => "#{HOME_DIRECTORY}",
   "PROJECT_DIRECTORY" => "#{PROJECT_DIRECTORY}",
   "APP_PATH" => "#{PROJECT_DIRECTORY}/rust-breakout",
-  "OPENSSL_LIB_DIR" => "/usr/lib/x86_64-linux-gnu",
-  "OPENSSL_INCLUDE_DIR" => "/usr/include/openssl",
 }
 
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
