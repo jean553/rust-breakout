@@ -1,0 +1,9 @@
+language: rust
+rust:
+    - nightly
+
+before_script:
+    - cd rust-breakout/ 
+
+script:
+    - cargo build
