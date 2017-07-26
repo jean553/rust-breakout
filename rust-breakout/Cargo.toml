@@ -4,3 +4,4 @@ version = "0.1.0"
 authors = ["vagrant"]
 
 [dependencies]
+piston_window = "0.68.0"
