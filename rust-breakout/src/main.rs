@@ -13,8 +13,10 @@ fn main() {
 
     let mut window: PistonWindow = WindowSettings::new(
         "Rust Breakout",
-        [600, 400]
+        [1600, 900]
     )
+    .fullscreen(true)
+    .exit_on_esc(true)
     .build()
     .unwrap();
 
