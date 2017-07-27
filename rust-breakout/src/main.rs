@@ -12,16 +12,23 @@ use graphics::rectangle::Rectangle;
 
 fn main() {
 
+    const WINDOW_WIDTH: u32 = 1600;
+    const WINDOW_HEIGHT: u32 = 900;
+
     let mut window: PistonWindow = WindowSettings::new(
         "Rust Breakout",
-        [1600, 900]
+        [
+            WINDOW_WIDTH,
+            WINDOW_HEIGHT
+        ]
     )
     .fullscreen(true)
     .exit_on_esc(true)
     .build()
     .unwrap();
 
-    let player = Rectangle::new([0.3, 0.3, 0.3, 1.0]);
+    const GREY_COLOR: [f32; 4] = [0.3, 0.3, 0.3, 1.0];
+    let player = Rectangle::new(GREY_COLOR);
     let mut player_position: f64 = 0.0;
 
     while let Some(event) = window.next() {
@@ -30,17 +37,25 @@ fn main() {
             &event,
             |context, graphics| {
 
+                const BLACK_COLOR: f32 = 0.0;
+                const COLOR_COMPOSITE_AMOUNT: usize = 4;
                 clear(
-                    [0.0; 4],
+                    [
+                        BLACK_COLOR;
+                        COLOR_COMPOSITE_AMOUNT
+                    ],
                     graphics,
                 );
 
+                const PLAYER_VERTICAL_POSITION: f64 = 890.0;
+                const PLAYER_WIDTH: f64 = 100.0;
+                const PLAYER_HEIGHT: f64 = 10.0;
                 player.draw(
                     [
                         player_position,
-                        890.0,
-                        100.0,
-                        10.0
+                        PLAYER_VERTICAL_POSITION,
+                        PLAYER_WIDTH,
+                        PLAYER_HEIGHT,
                     ],
                     &context.draw_state,
                     context.transform,
