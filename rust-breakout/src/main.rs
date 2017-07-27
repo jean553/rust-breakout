@@ -1,4 +1,5 @@
 extern crate piston_window;
+extern crate graphics;
 
 use piston_window::{
     PistonWindow,
