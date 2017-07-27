@@ -7,6 +7,8 @@ use piston_window::{
     rectangle,
 };
 
+use graphics::rectangle::Rectangle;
+
 fn main() {
 
     let mut window: PistonWindow = WindowSettings::new(
@@ -16,14 +18,17 @@ fn main() {
     .build()
     .unwrap();
 
+    let player = Rectangle::new([0.3, 0.3, 0.3, 1.0]);
+
     while let Some(event) = window.next() {
 
         window.draw_2d(
             &event,
             |context, graphics| {
-                rectangle(
-                    [0.3, 0.3, 0.3, 1.0],
+
+                player.draw(
                     [0.0, 390.0, 100.0, 10.0],
+                    &context.draw_state,
                     context.transform,
                     graphics,
                 );
