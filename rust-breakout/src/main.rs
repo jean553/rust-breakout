@@ -4,7 +4,8 @@ extern crate graphics;
 use piston_window::{
     PistonWindow,
     WindowSettings,
-    rectangle,
+    MouseCursorEvent,
+    clear,
 };
 
 use graphics::rectangle::Rectangle;
@@ -21,6 +22,7 @@ fn main() {
     .unwrap();
 
     let player = Rectangle::new([0.3, 0.3, 0.3, 1.0]);
+    let mut player_position: f64 = 0.0;
 
     while let Some(event) = window.next() {
 
@@ -28,13 +30,27 @@ fn main() {
             &event,
             |context, graphics| {
 
+                clear(
+                    [0.0; 4],
+                    graphics,
+                );
+
                 player.draw(
-                    [0.0, 390.0, 100.0, 10.0],
+                    [
+                        player_position,
+                        890.0,
+                        100.0,
+                        10.0
+                    ],
                     &context.draw_state,
                     context.transform,
                     graphics,
                 );
             }
         );
+
+        if let Some(position) = event.mouse_cursor_args() {
+            player_position = position[0];
+        }
     }
 }
