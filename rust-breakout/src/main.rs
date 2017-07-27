@@ -4,21 +4,32 @@ extern crate graphics;
 use piston_window::{
     PistonWindow,
     WindowSettings,
-    rectangle,
+    MouseCursorEvent,
+    clear,
 };
 
 use graphics::rectangle::Rectangle;
 
 fn main() {
 
+    const WINDOW_WIDTH: u32 = 1600;
+    const WINDOW_HEIGHT: u32 = 900;
+
     let mut window: PistonWindow = WindowSettings::new(
         "Rust Breakout",
-        [600, 400]
+        [
+            WINDOW_WIDTH,
+            WINDOW_HEIGHT
+        ]
     )
+    .fullscreen(true)
+    .exit_on_esc(true)
     .build()
     .unwrap();
 
-    let player = Rectangle::new([0.3, 0.3, 0.3, 1.0]);
+    const GREY_COLOR: [f32; 4] = [0.3, 0.3, 0.3, 1.0];
+    let player = Rectangle::new(GREY_COLOR);
+    let mut player_position: f64 = 0.0;
 
     while let Some(event) = window.next() {
 
@@ -26,13 +37,35 @@ fn main() {
             &event,
             |context, graphics| {
 
+                const BLACK_COLOR: f32 = 0.0;
+                const COLOR_COMPOSITE_AMOUNT: usize = 4;
+                clear(
+                    [
+                        BLACK_COLOR;
+                        COLOR_COMPOSITE_AMOUNT
+                    ],
+                    graphics,
+                );
+
+                const PLAYER_VERTICAL_POSITION: f64 = 890.0;
+                const PLAYER_WIDTH: f64 = 100.0;
+                const PLAYER_HEIGHT: f64 = 10.0;
                 player.draw(
-                    [0.0, 390.0, 100.0, 10.0],
+                    [
+                        player_position,
+                        PLAYER_VERTICAL_POSITION,
+                        PLAYER_WIDTH,
+                        PLAYER_HEIGHT,
+                    ],
                     &context.draw_state,
                     context.transform,
                     graphics,
                 );
             }
         );
+
+        if let Some(position) = event.mouse_cursor_args() {
+            player_position = position[0];
+        }
     }
 }
