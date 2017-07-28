@@ -36,16 +36,6 @@ fn main() {
     .build()
     .unwrap();
 
-    const GREY_COLOR: [f32; 4] = [
-        0.3,
-        0.3,
-        0.3,
-        1.0,
-    ];
-
-    let player = Rectangle::new(GREY_COLOR);
-    let mut player_position: f64 = 0.0;
-
     let separators = Separators::new();
 
     while let Some(event) = window.next() {
