@@ -73,10 +73,17 @@ fn main() {
             const PLAYER_MIN_POSITION: f64 = 300.0;
             const PLAYER_MAX_POSITION: f64 = 1200.0;
 
-            if player_position > PLAYER_MIN_POSITION &&
+            let expected_position = if
+                player_position > PLAYER_MIN_POSITION &&
                 player_position < PLAYER_MAX_POSITION {
-                player.set_position(player_position);
-            }
+                player_position
+            } else if player_position < PLAYER_MIN_POSITION {
+                PLAYER_MIN_POSITION
+            } else {
+                PLAYER_MAX_POSITION
+            };
+
+            player.set_position(expected_position);
         }
     }
 }
