@@ -58,21 +58,6 @@ fn main() {
                     ],
                     graphics,
                 );
-
-                const PLAYER_VERTICAL_POSITION: f64 = 890.0;
-                const PLAYER_WIDTH: f64 = 100.0;
-                const PLAYER_HEIGHT: f64 = 10.0;
-                player.draw(
-                    [
-                        player_position,
-                        PLAYER_VERTICAL_POSITION,
-                        PLAYER_WIDTH,
-                        PLAYER_HEIGHT,
-                    ],
-                    &context.draw_state,
-                    context.transform,
-                    graphics,
-                );
             }
         );
 
