@@ -76,6 +76,10 @@ fn main() {
             if player_position > PLAYER_MIN_POSITION &&
                 player_position < PLAYER_MAX_POSITION {
                 player.set_position(player_position);
+            } else if player_position < PLAYER_MIN_POSITION {
+                player.set_position(PLAYER_MIN_POSITION);
+            } else {
+                player.set_position(PLAYER_MAX_POSITION);
             }
         }
     }
