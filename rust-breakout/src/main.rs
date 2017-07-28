@@ -14,8 +14,6 @@ use piston_window::{
     clear,
 };
 
-use graphics::rectangle::Rectangle;
-
 use separators::Separators;
 use player::Player;
 use display::Display;
@@ -75,10 +73,8 @@ fn main() {
             const PLAYER_MIN_POSITION: f64 = 300.0;
             const PLAYER_MAX_POSITION: f64 = 1200.0;
 
-            if (
-                player_position > PLAYER_MIN_POSITION &&
-                player_position < PLAYER_MAX_POSITION
-            ) {
+            if player_position > PLAYER_MIN_POSITION &&
+                player_position < PLAYER_MAX_POSITION {
                 player.set_position(player_position);
             }
         }
