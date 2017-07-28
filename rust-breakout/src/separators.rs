@@ -1,3 +1,6 @@
+//! The module that handles the two vertical separators
+//! located at both side of the playable area.
+
 use piston_window::G2d;
 
 use graphics::rectangle::Rectangle;
@@ -5,6 +8,7 @@ use graphics::context::Context;
 
 use display::Display;
 
+/// Contains the left and right separators surfaces.
 pub struct Separators {
     left: Rectangle,
     right: Rectangle,
@@ -12,6 +16,7 @@ pub struct Separators {
 
 impl Separators {
 
+    /// Initializes the two separators.
     pub fn new() -> Separators {
 
         const SEPARATOR_WHITE_COLOR: [f32; 4] = [
@@ -30,6 +35,12 @@ impl Separators {
 
 impl Display for Separators {
 
+    /// Displays the two separators.
+    ///
+    /// # Arguments:
+    ///
+    /// * `context` - graphical context from the piston window
+    /// * `graphics` - 2D graphics from the piston window
     fn display(
         &self,
         context: Context,
