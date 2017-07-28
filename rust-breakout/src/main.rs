@@ -69,7 +69,18 @@ fn main() {
         );
 
         if let Some(position) = event.mouse_cursor_args() {
-            player.set_position(position[0]); // only horizontal position
+
+            let player_position = position[0];
+
+            const PLAYER_MIN_POSITION: f64 = 300.0;
+            const PLAYER_MAX_POSITION: f64 = 1200.0;
+
+            if (
+                player_position > PLAYER_MIN_POSITION &&
+                player_position < PLAYER_MAX_POSITION
+            ) {
+                player.set_position(player_position);
+            }
         }
     }
 }
