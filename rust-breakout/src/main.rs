@@ -1,6 +1,9 @@
 extern crate piston_window;
 extern crate graphics;
 
+mod separators;
+mod display;
+
 use piston_window::{
     PistonWindow,
     WindowSettings,
@@ -9,6 +12,9 @@ use piston_window::{
 };
 
 use graphics::rectangle::Rectangle;
+
+use separators::Separators;
+use display::Display;
 
 fn main() {
 
@@ -27,15 +33,28 @@ fn main() {
     .build()
     .unwrap();
 
-    const GREY_COLOR: [f32; 4] = [0.3, 0.3, 0.3, 1.0];
+    const GREY_COLOR: [f32; 4] = [
+        0.3,
+        0.3,
+        0.3,
+        1.0,
+    ];
+
     let player = Rectangle::new(GREY_COLOR);
     let mut player_position: f64 = 0.0;
+
+    let separators = Separators::new();
 
     while let Some(event) = window.next() {
 
         window.draw_2d(
             &event,
             |context, graphics| {
+
+                separators.display(
+                    context,
+                    graphics,
+                );
 
                 const BLACK_COLOR: f32 = 0.0;
                 const COLOR_COMPOSITE_AMOUNT: usize = 4;
