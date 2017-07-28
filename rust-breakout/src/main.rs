@@ -4,6 +4,7 @@ extern crate piston_window;
 extern crate graphics;
 
 mod separators;
+mod player;
 mod display;
 
 use piston_window::{
