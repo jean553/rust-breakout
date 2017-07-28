@@ -1,3 +1,5 @@
+//! Starting script of the program, contains the main loop.
+
 extern crate piston_window;
 extern crate graphics;
 
