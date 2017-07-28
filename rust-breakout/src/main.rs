@@ -4,6 +4,7 @@ extern crate piston_window;
 extern crate graphics;
 
 mod separators;
+mod player;
 mod display;
 
 use piston_window::{
@@ -16,6 +17,7 @@ use piston_window::{
 use graphics::rectangle::Rectangle;
 
 use separators::Separators;
+use player::Player;
 use display::Display;
 
 fn main() {
@@ -35,17 +37,8 @@ fn main() {
     .build()
     .unwrap();
 
-    const GREY_COLOR: [f32; 4] = [
-        0.3,
-        0.3,
-        0.3,
-        1.0,
-    ];
-
-    let player = Rectangle::new(GREY_COLOR);
-    let mut player_position: f64 = 0.0;
-
     let separators = Separators::new();
+    let mut player = Player::new();
 
     while let Some(event) = window.next() {
 
@@ -54,6 +47,11 @@ fn main() {
             |context, graphics| {
 
                 separators.display(
+                    context,
+                    graphics,
+                );
+
+                player.display(
                     context,
                     graphics,
                 );
@@ -67,26 +65,11 @@ fn main() {
                     ],
                     graphics,
                 );
-
-                const PLAYER_VERTICAL_POSITION: f64 = 890.0;
-                const PLAYER_WIDTH: f64 = 100.0;
-                const PLAYER_HEIGHT: f64 = 10.0;
-                player.draw(
-                    [
-                        player_position,
-                        PLAYER_VERTICAL_POSITION,
-                        PLAYER_WIDTH,
-                        PLAYER_HEIGHT,
-                    ],
-                    &context.draw_state,
-                    context.transform,
-                    graphics,
-                );
             }
         );
 
         if let Some(position) = event.mouse_cursor_args() {
-            player_position = position[0];
+            player.set_position(position[0]); // only horizontal position
         }
     }
 }
