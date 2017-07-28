@@ -31,6 +31,18 @@ impl Player {
             position: PLAYER_DEFAULT_POSITION,
         }
     }
+
+    /// Setter of the mouse horizontal position (cursor horizontal position).
+    ///
+    /// # Arguments:
+    ///
+    /// * `position` - the horizontal position of the player
+    pub fn set_position(
+        &mut self,
+        position: f64,
+    ) {
+        self.position = position;
+    }
 }
 
 impl Display for Player {

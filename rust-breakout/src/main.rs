@@ -17,6 +17,7 @@ use piston_window::{
 use graphics::rectangle::Rectangle;
 
 use separators::Separators;
+use player::Player;
 use display::Display;
 
 fn main() {
@@ -37,6 +38,7 @@ fn main() {
     .unwrap();
 
     let separators = Separators::new();
+    let mut player = Player::new();
 
     while let Some(event) = window.next() {
 
@@ -45,6 +47,11 @@ fn main() {
             |context, graphics| {
 
                 separators.display(
+                    context,
+                    graphics,
+                );
+
+                player.display(
                     context,
                     graphics,
                 );
@@ -62,7 +69,7 @@ fn main() {
         );
 
         if let Some(position) = event.mouse_cursor_args() {
-            player_position = position[0];
+            player.set_position(position[0]); // only horizontal position
         }
     }
 }
