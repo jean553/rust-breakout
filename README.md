@@ -31,3 +31,9 @@ On your host:
 ```bash
 ./rust-breakout/target/release/rust-breakout
 ```
+
+## Generate documentation
+
+```bash
+cargo rustdoc -- --no-defaults
+```
