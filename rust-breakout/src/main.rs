@@ -5,6 +5,7 @@ extern crate graphics;
 
 mod separators;
 mod player;
+mod ball;
 mod display;
 
 use piston_window::{
@@ -17,6 +18,7 @@ use piston_window::{
 
 use separators::Separators;
 use player::Player;
+use ball::Ball;
 use display::Display;
 
 fn main() {
@@ -38,6 +40,7 @@ fn main() {
 
     let separators = Separators::new();
     let mut player = Player::new();
+    let ball = Ball::new();
 
     while let Some(event) = window.next() {
 
@@ -51,6 +54,11 @@ fn main() {
                 );
 
                 player.display(
+                    context,
+                    graphics,
+                );
+
+                ball.display(
                     context,
                     graphics,
                 );
