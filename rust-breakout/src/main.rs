@@ -12,6 +12,7 @@ use piston_window::{
     WindowSettings,
     MouseCursorEvent,
     clear,
+    G2d,
 };
 
 use separators::Separators;
@@ -54,15 +55,7 @@ fn main() {
                     graphics,
                 );
 
-                const BLACK_COLOR: f32 = 0.0;
-                const COLOR_COMPOSITE_AMOUNT: usize = 4;
-                clear(
-                    [
-                        BLACK_COLOR;
-                        COLOR_COMPOSITE_AMOUNT
-                    ],
-                    graphics,
-                );
+                clear_screen(graphics);
             }
         );
 
@@ -86,4 +79,22 @@ fn main() {
             player.set_position(expected_position);
         }
     }
+}
+
+/// Turns the whole screen to black, used to update the rendered content.
+///
+/// # Arguments:
+///
+/// * `graphics` - 2D graphics from the piston window
+fn clear_screen(graphics: &mut G2d) {
+
+    const BLACK_COLOR: f32 = 0.0;
+    const COLOR_COMPOSITE_AMOUNT: usize = 4;
+    clear(
+        [
+            BLACK_COLOR;
+            COLOR_COMPOSITE_AMOUNT
+        ],
+        graphics,
+    );
 }
