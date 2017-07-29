@@ -60,23 +60,10 @@ fn main() {
         );
 
         if let Some(position) = event.mouse_cursor_args() {
-
-            let player_position = position[0];
-
-            const PLAYER_MIN_POSITION: f64 = 300.0;
-            const PLAYER_MAX_POSITION: f64 = 1200.0;
-
-            let expected_position = if
-                player_position > PLAYER_MIN_POSITION &&
-                player_position < PLAYER_MAX_POSITION {
-                player_position
-            } else if player_position < PLAYER_MIN_POSITION {
-                PLAYER_MIN_POSITION
-            } else {
-                PLAYER_MAX_POSITION
-            };
-
-            player.set_position(expected_position);
+            move_player(
+                &mut player,
+                position[0], // horizontal position only
+            );
         }
     }
 }
@@ -97,4 +84,31 @@ fn clear_screen(graphics: &mut G2d) {
         ],
         graphics,
     );
+}
+
+/// Moves the player according to the current cursor horizontal position.
+///
+/// # Arguments:
+///
+/// * `player` - the player to move
+/// * `cursor_position` - the cursor horizontal position
+fn move_player(
+    player: &mut Player,
+    cursor_position: f64,
+) {
+
+    const PLAYER_MIN_POSITION: f64 = 300.0;
+    const PLAYER_MAX_POSITION: f64 = 1200.0;
+
+    let player_position = if
+        cursor_position > PLAYER_MIN_POSITION &&
+        cursor_position < PLAYER_MAX_POSITION {
+        cursor_position
+    } else if cursor_position < PLAYER_MIN_POSITION {
+        PLAYER_MIN_POSITION
+    } else {
+        PLAYER_MAX_POSITION
+    };
+
+    player.set_position(player_position);
 }
