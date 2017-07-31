@@ -12,6 +12,7 @@ use display::Display;
 pub struct Ball {
     circle: CircleArc,
     horizontal_position: f64,
+    vertical_position: f64,
     moving: bool,
 }
 
@@ -31,6 +32,7 @@ impl Ball {
         const BALL_RADIUS_END: f64 = 2.0 * PI - 0.01;
 
         const DEFAULT_HORIZONTAL_POSITION: f64 = 800.0;
+        const DEFAULT_VERTICAL_POSITION: f64 = 876.0;
 
         Ball {
             circle: CircleArc::new(
@@ -40,6 +42,7 @@ impl Ball {
                 BALL_RADIUS_END,
             ),
             horizontal_position: DEFAULT_HORIZONTAL_POSITION,
+            vertical_position: DEFAULT_VERTICAL_POSITION,
             moving: false,
         }
     }
@@ -89,14 +92,13 @@ impl Display for Ball {
         graphics: &mut G2d,
     ) {
 
-        const BALL_VERTICAL_POSITION: f64 = 876.0;
         const BALL_WIDTH: f64 = 10.0;
         const BALL_HEIGHT: f64 = 10.0;
 
         self.circle.draw(
             [
                 self.horizontal_position,
-                BALL_VERTICAL_POSITION,
+                self.vertical_position,
                 BALL_WIDTH,
                 BALL_HEIGHT,
             ],
