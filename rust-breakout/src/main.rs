@@ -8,6 +8,8 @@ mod player;
 mod ball;
 mod display;
 
+use std::time::Instant;
+
 use piston_window::{
     PistonWindow,
     WindowSettings,
@@ -45,7 +47,17 @@ fn main() {
     let mut player = Player::new();
     let mut ball = Ball::new();
 
+    let mut last_time: u64 = 0;
+    let timer = Instant::now();
+
     while let Some(event) = window.next() {
+
+        const ANIMATION_INTERVAL: u64 = 50;
+        let current_time = get_elapsed_time(&timer);
+        if ball.is_moving() && current_time - last_time > ANIMATION_INTERVAL {
+            ball.update_position();
+            last_time = current_time;
+        }
 
         window.draw_2d(
             &event,
@@ -121,4 +133,26 @@ fn clear_screen(graphics: &mut G2d) {
         ],
         graphics,
     );
+}
+
+/// Returns the elapsed time in milliseconds according to the given timer.
+///
+/// # Arguments:
+///
+/// * `timer` - the given timer started before the function call
+///
+/// # Returns:
+///
+/// The elapsed time in milliseconds.
+fn get_elapsed_time(timer: &Instant) -> u64 {
+
+    let current_timer = timer.elapsed();
+    let current_second = current_timer.as_secs();
+    let current_nanosecond = current_timer.subsec_nanos();
+
+    const MILLISECONDS_IN_ONE_SECOND: u64 = 1000;
+    const NANOSECONDS_IN_ONE_MILLISECOND: u64 = 1000000;
+
+    current_second * MILLISECONDS_IN_ONE_SECOND +
+        current_nanosecond as u64 / NANOSECONDS_IN_ONE_MILLISECOND
 }
