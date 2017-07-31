@@ -13,6 +13,8 @@ pub struct Ball {
     circle: CircleArc,
     horizontal_position: f64,
     vertical_position: f64,
+    horizontal_direction: f64,
+    vertical_direction: f64,
     moving: bool,
 }
 
@@ -34,6 +36,9 @@ impl Ball {
         const DEFAULT_HORIZONTAL_POSITION: f64 = 800.0;
         const DEFAULT_VERTICAL_POSITION: f64 = 876.0;
 
+        const DEFAULT_HORIZONTAL_DIRECTION: f64 = 10.0;
+        const DEFAULT_VERTICAL_DIRECTION: f64 = 0.0;
+
         Ball {
             circle: CircleArc::new(
                 BALL_GREY_COLOR,
@@ -43,6 +48,8 @@ impl Ball {
             ),
             horizontal_position: DEFAULT_HORIZONTAL_POSITION,
             vertical_position: DEFAULT_VERTICAL_POSITION,
+            horizontal_direction: DEFAULT_HORIZONTAL_DIRECTION,
+            vertical_direction: DEFAULT_VERTICAL_DIRECTION,
             moving: false,
         }
     }
@@ -75,6 +82,12 @@ impl Ball {
     /// Allows the ball to move, the ball is not attached to the player anymore
     pub fn allow_move(&mut self) {
         self.moving = true;
+    }
+
+    /// Updates the positions of the ball according to the directions
+    pub fn update_position(&mut self) {
+        self.horizontal_position += self.horizontal_direction;
+        self.vertical_position += self.vertical_direction;
     }
 }
 
