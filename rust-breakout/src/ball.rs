@@ -11,6 +11,7 @@ use display::Display;
 
 pub struct Ball {
     circle: CircleArc,
+    horizontal_position: f64,
 }
 
 impl Ball {
@@ -28,14 +29,31 @@ impl Ball {
         const BALL_RADIUS_START: f64 = 0.0;
         const BALL_RADIUS_END: f64 = 2.0 * PI - 0.01;
 
+        const DEFAULT_HORIZONTAL_POSITION: f64 = 800.0;
+
         Ball {
             circle: CircleArc::new(
                 BALL_GREY_COLOR,
                 BALL_RADIUS,
                 BALL_RADIUS_START,
                 BALL_RADIUS_END,
-            )
+            ),
+            horizontal_position: DEFAULT_HORIZONTAL_POSITION,
         }
+    }
+
+    /// Setter for the horizontal position of the ball.
+    /// Used to update the position at the same time as the player
+    /// when the ball is stuck on the player.
+    ///
+    /// # Arguments:
+    ///
+    /// * `position` - the horizontal position to set
+    pub fn set_horizontal_position(
+        &mut self,
+        position: f64,
+    ) {
+        self.horizontal_position = position;
     }
 }
 
@@ -53,14 +71,13 @@ impl Display for Ball {
         graphics: &mut G2d,
     ) {
 
-        const BALL_HORIZONTAL_POSITION: f64 = 800.0;
-        const BALL_VERTICAL_POSITION: f64 = 500.0;
+        const BALL_VERTICAL_POSITION: f64 = 876.0;
         const BALL_WIDTH: f64 = 10.0;
         const BALL_HEIGHT: f64 = 10.0;
 
         self.circle.draw(
             [
-                BALL_HORIZONTAL_POSITION,
+                self.horizontal_position,
                 BALL_VERTICAL_POSITION,
                 BALL_WIDTH,
                 BALL_HEIGHT,

@@ -40,7 +40,7 @@ fn main() {
 
     let separators = Separators::new();
     let mut player = Player::new();
-    let ball = Ball::new();
+    let mut ball = Ball::new();
 
     while let Some(event) = window.next() {
 
@@ -68,10 +68,16 @@ fn main() {
         );
 
         if let Some(position) = event.mouse_cursor_args() {
+
             move_player(
                 &mut player,
                 position[0], // horizontal position only
             );
+
+            const BALL_ON_PLAYER_POSITION_OFFSET: f64 = 50.0;
+            let ball_horizontal_position =
+                position[0] + BALL_ON_PLAYER_POSITION_OFFSET;
+            ball.set_horizontal_position(ball_horizontal_position);
         }
     }
 }
