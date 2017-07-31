@@ -12,8 +12,11 @@ use piston_window::{
     PistonWindow,
     WindowSettings,
     MouseCursorEvent,
+    PressEvent,
     clear,
     G2d,
+    Button,
+    MouseButton,
 };
 
 use separators::Separators;
@@ -85,10 +88,19 @@ fn main() {
 
             player.set_position(expected_position);
 
-            const BALL_ON_PLAYER_POSITION_OFFSET: f64 = 50.0;
-            let ball_horizontal_position =
-                expected_position + BALL_ON_PLAYER_POSITION_OFFSET;
-            ball.set_horizontal_position(ball_horizontal_position);
+            if !ball.is_moving() {
+
+                const BALL_ON_PLAYER_POSITION_OFFSET: f64 = 50.0;
+                let ball_horizontal_position =
+                    expected_position + BALL_ON_PLAYER_POSITION_OFFSET;
+                ball.set_horizontal_position(ball_horizontal_position);
+            }
+        }
+
+        if let Some(button) = event.press_args() {
+            if button == Button::Mouse(MouseButton::Left) {
+                ball.allow_move();
+            }
         }
     }
 }
