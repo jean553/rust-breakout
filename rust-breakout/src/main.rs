@@ -40,7 +40,7 @@ fn main() {
 
     let separators = Separators::new();
     let mut player = Player::new();
-    let ball = Ball::new();
+    let mut ball = Ball::new();
 
     while let Some(event) = window.next() {
 
@@ -68,10 +68,27 @@ fn main() {
         );
 
         if let Some(position) = event.mouse_cursor_args() {
-            move_player(
-                &mut player,
-                position[0], // horizontal position only
-            );
+
+            const PLAYER_MIN_POSITION: f64 = 300.0;
+            const PLAYER_MAX_POSITION: f64 = 1200.0;
+
+            let current_position = position[0];
+            let expected_position = if
+                current_position <= PLAYER_MAX_POSITION &&
+                current_position >= PLAYER_MIN_POSITION {
+                current_position
+            } else if current_position < PLAYER_MIN_POSITION {
+                PLAYER_MIN_POSITION
+            } else {
+                PLAYER_MAX_POSITION
+            };
+
+            player.set_position(expected_position);
+
+            const BALL_ON_PLAYER_POSITION_OFFSET: f64 = 50.0;
+            let ball_horizontal_position =
+                expected_position + BALL_ON_PLAYER_POSITION_OFFSET;
+            ball.set_horizontal_position(ball_horizontal_position);
         }
     }
 }
@@ -92,31 +109,4 @@ fn clear_screen(graphics: &mut G2d) {
         ],
         graphics,
     );
-}
-
-/// Moves the player according to the current cursor horizontal position.
-///
-/// # Arguments:
-///
-/// * `player` - the player to move
-/// * `cursor_position` - the cursor horizontal position
-fn move_player(
-    player: &mut Player,
-    cursor_position: f64,
-) {
-
-    const PLAYER_MIN_POSITION: f64 = 300.0;
-    const PLAYER_MAX_POSITION: f64 = 1200.0;
-
-    let player_position = if
-        cursor_position > PLAYER_MIN_POSITION &&
-        cursor_position < PLAYER_MAX_POSITION {
-        cursor_position
-    } else if cursor_position < PLAYER_MIN_POSITION {
-        PLAYER_MIN_POSITION
-    } else {
-        PLAYER_MAX_POSITION
-    };
-
-    player.set_position(player_position);
 }
