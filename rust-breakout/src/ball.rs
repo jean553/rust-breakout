@@ -12,6 +12,7 @@ use display::Display;
 pub struct Ball {
     circle: CircleArc,
     horizontal_position: f64,
+    moving: bool,
 }
 
 impl Ball {
@@ -39,6 +40,7 @@ impl Ball {
                 BALL_RADIUS_END,
             ),
             horizontal_position: DEFAULT_HORIZONTAL_POSITION,
+            moving: false,
         }
     }
 
@@ -54,6 +56,22 @@ impl Ball {
         position: f64,
     ) {
         self.horizontal_position = position;
+    }
+
+    /// Getter that indicates if the ball is moving.
+    /// When the game starts, the ball does not move and is simply
+    /// attached to the player.
+    ///
+    /// # Returns:
+    ///
+    /// True if the ball is moving, False if the ball is attached to the player
+    pub fn is_moving(&self) -> bool {
+        self.moving
+    }
+
+    /// Allows the ball to move, the ball is not attached to the player anymore
+    pub fn allow_move(&mut self) {
+        self.moving = true;
     }
 }
 
