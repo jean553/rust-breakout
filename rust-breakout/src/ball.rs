@@ -112,6 +112,20 @@ impl Ball {
 
         false
     }
+
+    /// Inverts the direction of the ball.
+    ///
+    /// TODO: #24 partially implemented, add the whole definition
+    pub fn invert_direction(&mut self) {
+
+        const INVERT: f64 = -1.0;
+
+        if
+            self.horizontal_position > RIGHT_BORDER_HORIZONTAL_POSITION ||
+            self.horizontal_position < LEFT_BORDER_HORIZONTAL_POSITION {
+            self.horizontal_direction *= INVERT;
+        }
+    }
 }
 
 impl Display for Ball {
