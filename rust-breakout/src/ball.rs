@@ -9,6 +9,9 @@ use graphics::context::Context;
 
 use display::Display;
 
+const RIGHT_BORDER_HORIZONTAL_POSITION: f64 = 1300.0;
+const LEFT_BORDER_HORIZONTAL_POSITION: f64 = 300.0;
+
 pub struct Ball {
     circle: CircleArc,
     horizontal_position: f64,
@@ -98,8 +101,6 @@ impl Ball {
     /// False if the ball is not touching any border
     pub fn is_at_border(&self) -> bool {
 
-        const RIGHT_BORDER_HORIZONTAL_POSITION: f64 = 1300.0;
-        const LEFT_BORDER_HORIZONTAL_POSITION: f64 = 300.0;
         const TOP_BORDER_VERTICAL_POSITION: f64 = 0.0;
 
         if
