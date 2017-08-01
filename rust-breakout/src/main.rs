@@ -55,7 +55,13 @@ fn main() {
         const ANIMATION_INTERVAL: u64 = 50;
         let current_time = get_elapsed_time(&timer);
         if ball.is_moving() && current_time - last_time > ANIMATION_INTERVAL {
+
             ball.update_position();
+
+            if ball.is_at_border() {
+                /* TODO: #24 implements the direction update */
+            }
+
             last_time = current_time;
         }
 
