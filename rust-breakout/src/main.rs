@@ -59,7 +59,7 @@ fn main() {
             ball.update_position();
 
             if ball.is_at_border() {
-                /* TODO: #24 implements the direction update */
+                ball.invert_direction();
             }
 
             last_time = current_time;
