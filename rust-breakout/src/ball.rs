@@ -89,6 +89,28 @@ impl Ball {
         self.horizontal_position += self.horizontal_direction;
         self.vertical_position += self.vertical_direction;
     }
+
+    /// Indicates if the ball is touching a border of the game area
+    ///
+    /// # Returns:
+    ///
+    /// True if the ball is touching a border,
+    /// False if the ball is not touching any border
+    pub fn is_at_border(&self) -> bool {
+
+        const RIGHT_BORDER_HORIZONTAL_POSITION: f64 = 1300.0;
+        const LEFT_BORDER_HORIZONTAL_POSITION: f64 = 300.0;
+        const TOP_BORDER_VERTICAL_POSITION: f64 = 0.0;
+
+        if
+            self.horizontal_position > RIGHT_BORDER_HORIZONTAL_POSITION ||
+            self.horizontal_position < LEFT_BORDER_HORIZONTAL_POSITION ||
+            self.vertical_position < TOP_BORDER_VERTICAL_POSITION {
+            return true;
+        }
+
+        false
+    }
 }
 
 impl Display for Ball {
