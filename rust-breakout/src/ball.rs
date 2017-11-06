@@ -102,11 +102,11 @@ impl Ball {
     /// False if the ball is not touching any border
     pub fn is_at_border(&self) -> bool {
 
-        const TOP_BORDER_VERTICAL_POSITION: f64 = 0.0;
+        let horizontal_position = &self.horizontal_position;
 
         if
-            self.horizontal_position > RIGHT_BORDER_HORIZONTAL_POSITION ||
-            self.horizontal_position < LEFT_BORDER_HORIZONTAL_POSITION ||
+            horizontal_position > &RIGHT_BORDER_HORIZONTAL_POSITION ||
+            horizontal_position < &LEFT_BORDER_HORIZONTAL_POSITION ||
             self.vertical_position < TOP_BORDER_VERTICAL_POSITION {
             return true;
         }
@@ -121,10 +121,14 @@ impl Ball {
 
         const INVERT: f64 = -1.0;
 
+        let horizontal_position = &self.horizontal_position;
+
         if
-            self.horizontal_position > RIGHT_BORDER_HORIZONTAL_POSITION ||
-            self.horizontal_position < LEFT_BORDER_HORIZONTAL_POSITION {
+            horizontal_position > &RIGHT_BORDER_HORIZONTAL_POSITION ||
+            horizontal_position < &LEFT_BORDER_HORIZONTAL_POSITION {
             self.horizontal_direction *= INVERT;
+        } else if self.vertical_position < TOP_BORDER_VERTICAL_POSITION {
+            self.vertical_direction *= INVERT;
         }
     }
 }
