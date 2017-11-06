@@ -1,4 +1,4 @@
-//! Starting script of the program, contains the main loop.
+//! A simple breakout video game.
 
 extern crate piston_window;
 extern crate graphics;

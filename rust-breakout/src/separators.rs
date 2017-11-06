@@ -8,7 +8,7 @@ use graphics::context::Context;
 
 use display::Display;
 
-/// Contains the left and right separators surfaces.
+/// Contains the left and right separators surfaces
 pub struct Separators {
     left: Rectangle,
     right: Rectangle,
@@ -16,7 +16,7 @@ pub struct Separators {
 
 impl Separators {
 
-    /// Initializes the two separators.
+    /// Initializes the two separators
     pub fn new() -> Separators {
 
         const SEPARATOR_WHITE_COLOR: [f32; 4] = [
@@ -35,7 +35,7 @@ impl Separators {
 
 impl Display for Separators {
 
-    /// Displays the two separators.
+    /// Displays the two separators
     ///
     /// # Arguments:
     ///

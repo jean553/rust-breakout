@@ -59,8 +59,6 @@ impl Ball {
     }
 
     /// Setter for the horizontal position of the ball.
-    /// Used to update the position at the same time as the player
-    /// when the ball is stuck on the player.
     ///
     /// # Arguments:
     ///
@@ -72,9 +70,7 @@ impl Ball {
         self.horizontal_position = position;
     }
 
-    /// Getter that indicates if the ball is moving.
-    /// When the game starts, the ball does not move and is simply
-    /// attached to the player.
+    /// Indicates if the ball is moving.
     ///
     /// # Returns:
     ///
@@ -114,9 +110,7 @@ impl Ball {
         false
     }
 
-    /// Inverts the direction of the ball.
-    ///
-    /// TODO: #24 partially implemented, add the whole definition
+    /// Inverts the direction of the ball
     pub fn invert_direction(&mut self) {
 
         const INVERT: f64 = -1.0;
@@ -135,7 +129,7 @@ impl Ball {
 
 impl Display for Ball {
 
-    /// Displays the ball.
+    /// Displays the ball
     ///
     /// # Arguments:
     ///
