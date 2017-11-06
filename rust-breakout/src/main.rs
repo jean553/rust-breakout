@@ -7,6 +7,7 @@ mod separators;
 mod player;
 mod ball;
 mod display;
+mod cell;
 
 use std::time::Instant;
 
@@ -25,6 +26,7 @@ use separators::Separators;
 use player::Player;
 use ball::Ball;
 use display::Display;
+use cell::Cell;
 
 fn main() {
 
