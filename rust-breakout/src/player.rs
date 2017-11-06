@@ -1,4 +1,4 @@
-//! The module that renders the player.
+//! Renders the player
 
 use piston_window::G2d;
 
@@ -14,7 +14,7 @@ pub struct Player {
 
 impl Player {
 
-    /// Initializes the player.
+    /// Initializes the player
     pub fn new() -> Player {
 
         const GREY_COLOR: [f32; 4] = [
@@ -32,7 +32,7 @@ impl Player {
         }
     }
 
-    /// Setter of the mouse horizontal position (cursor horizontal position).
+    /// Setter of the mouse horizontal position (cursor horizontal position)
     ///
     /// # Arguments:
     ///
@@ -47,7 +47,7 @@ impl Player {
 
 impl Display for Player {
 
-    /// Displays the player at its position.
+    /// Displays the player at its position
     ///
     /// # Arguments:
     ///

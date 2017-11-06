@@ -1,7 +1,4 @@
-//! Declaration of trait `Display`
-//!
-//! This trait is implemented by every game-level defined
-//! (and not library-level) displayable components.
+//! Trait for displayable content
 
 use piston_window::G2d;
 
@@ -9,7 +6,7 @@ use graphics::context::Context;
 
 pub trait Display {
 
-    /// Displays the component.
+    /// Displays the component
     fn display(
         &self,
         Context,
