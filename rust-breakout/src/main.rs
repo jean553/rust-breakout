@@ -49,6 +49,29 @@ fn main() {
     let mut player = Player::new();
     let mut ball = Ball::new();
 
+    const CELLS_AMOUNT: usize = 100;
+    let mut cells = [
+        Cell::new();
+        CELLS_AMOUNT
+    ];
+
+    const CELLS_PER_LINE: u8 = 20;
+
+    let mut vertical_index = 0;
+    for (index, cell) in cells.iter_mut().enumerate() {
+
+        let horizontal_index = index as u8 % CELLS_PER_LINE;
+
+        if index != 0 && horizontal_index == 0 {
+            vertical_index += 1;
+        }
+
+        cell.set_position_by_indices(
+            horizontal_index,
+            vertical_index,
+        );
+    }
+
     let mut last_time: u64 = 0;
     let timer = Instant::now();
 
@@ -85,6 +108,14 @@ fn main() {
                     context,
                     graphics,
                 );
+
+                for cell in cells.iter() {
+
+                    cell.display(
+                        context,
+                        graphics,
+                    );
+                }
 
                 clear_screen(graphics);
             }
