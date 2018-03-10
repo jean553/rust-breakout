@@ -105,6 +105,20 @@ fn main() {
                     CELLS_PER_LINE as usize
                 );
 
+            /* FIXME: should handle the case when there is no cell into the column */
+
+            let mut last_cell_index = ball_column;
+
+            const CELLS_PER_COLUMN: usize = 4;
+            for index in 1..(CELLS_PER_COLUMN + 1) {
+
+                if !cells[index].is_visible() {
+                    break;
+                }
+
+                last_cell_index += CELLS_PER_LINE as usize;
+            }
+
             let last_cell_vertical_position =
                 cells[last_cell_index].get_vertical_position();
             let last_cell_bottom =
@@ -113,6 +127,8 @@ fn main() {
             if ball.get_vertical_position() < last_cell_bottom {
                 ball.set_vertical_position(last_cell_bottom);
                 ball.vertically_invert_direction();
+
+                cells[last_cell_index].hide();
             }
 
             last_time = current_time;
@@ -138,6 +154,10 @@ fn main() {
                 );
 
                 for cell in cells.iter() {
+
+                    if !cell.is_visible() {
+                        continue;
+                    }
 
                     cell.display(
                         context,
