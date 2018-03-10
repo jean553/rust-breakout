@@ -83,6 +83,10 @@ fn main() {
 
             ball.update_position();
 
+            let ball_column = (
+                ball.get_horizontal_position() / (cell::CELL_WIDTH + 1.0)
+            ) as u32;
+
             if ball.is_at_border() {
                 ball.invert_direction();
             }

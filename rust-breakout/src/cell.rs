@@ -14,7 +14,7 @@ pub struct Cell {
     vertical_position: f64,
 }
 
-const CELL_WIDTH: f64 = 49.0;
+pub const CELL_WIDTH: f64 = 49.0;
 const CELL_HEIGHT: f64 = 20.0;
 
 impl Cell {
