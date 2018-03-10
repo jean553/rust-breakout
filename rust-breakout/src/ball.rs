@@ -79,6 +79,18 @@ impl Ball {
         self.horizontal_position
     }
 
+    /// Setter for the vertical position of the ball.
+    ///
+    /// # Arguments:
+    ///
+    /// * `position` - the vertical position to set
+    pub fn set_vertical_position(
+        &mut self,
+        position: f64,
+    ) {
+        self.vertical_position = position;
+    }
+
     /// Getter for the vertical position of the cell.
     ///
     /// # Returns:
