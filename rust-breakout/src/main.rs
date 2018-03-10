@@ -77,7 +77,7 @@ fn main() {
 
     while let Some(event) = window.next() {
 
-        const ANIMATION_INTERVAL: u64 = 50;
+        const ANIMATION_INTERVAL: u64 = 40;
         let current_time = get_elapsed_time(&timer);
         if ball.is_moving() && current_time - last_time > ANIMATION_INTERVAL {
 
