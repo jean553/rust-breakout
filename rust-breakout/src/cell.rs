@@ -12,6 +12,7 @@ pub struct Cell {
     rectangle: Rectangle,
     horizontal_position: f64,
     vertical_position: f64,
+    visible: bool,
 }
 
 pub const WIDTH: f64 = 49.0;
@@ -33,6 +34,7 @@ impl Cell {
             rectangle: Rectangle::new(ORANGE_COLOR),
             horizontal_position: 0.0,
             vertical_position: 0.0,
+            visible: true,
         }
     }
 
@@ -60,6 +62,21 @@ impl Cell {
     /// the vertical position of the cell
     pub fn get_vertical_position(&self) -> f64 {
         self.vertical_position
+    }
+
+    /// Set the visible boolean as false.
+    pub fn hide(&mut self) {
+        self.visible = false;
+    }
+
+    /// Indicates if the cell is visible.
+    ///
+    /// # Returns:
+    ///
+    /// true if the cell is visible,
+    /// false if the cell is not visible
+    pub fn is_visible(&self) -> bool {
+        self.visible
     }
 }
 
