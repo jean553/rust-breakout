@@ -40,8 +40,8 @@ impl Ball {
         const DEFAULT_HORIZONTAL_POSITION: f64 = 800.0;
         const DEFAULT_VERTICAL_POSITION: f64 = 876.0;
 
-        const DEFAULT_HORIZONTAL_DIRECTION: f64 = 10.0;
-        const DEFAULT_VERTICAL_DIRECTION: f64 = -8.0;
+        const DEFAULT_HORIZONTAL_DIRECTION: f64 = 8.0;
+        const DEFAULT_VERTICAL_DIRECTION: f64 = -6.0;
 
         Ball {
             circle: CircleArc::new(
