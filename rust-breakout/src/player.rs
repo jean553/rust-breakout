@@ -43,7 +43,20 @@ impl Player {
     ) {
         self.position = position;
     }
+
+    /// Getter of the player position.
+    ///
+    /// # Returns:
+    ///
+    /// the horizontal position of the player.
+    pub fn get_position(&self) -> f64 {
+        self.position
+    }
 }
+
+pub const PLAYER_VERTICAL_POSITION: f64 = 890.0;
+pub const WIDTH: f64 = 100.0;
+pub const HEIGHT: f64 = 10.0;
 
 impl Display for Player {
 
@@ -59,16 +72,12 @@ impl Display for Player {
         graphics: &mut G2d,
     ) {
 
-        const PLAYER_VERTICAL_POSITION: f64 = 890.0;
-        const PLAYER_WIDTH: f64 = 100.0;
-        const PLAYER_HEIGHT: f64 = 10.0;
-
         self.rectangle.draw(
             [
                 self.position,
                 PLAYER_VERTICAL_POSITION,
-                PLAYER_WIDTH,
-                PLAYER_HEIGHT,
+                WIDTH,
+                HEIGHT,
             ],
             &context.draw_state,
             context.transform,
