@@ -79,6 +79,15 @@ impl Ball {
         self.horizontal_position
     }
 
+    /// Getter for the vertical position of the cell.
+    ///
+    /// # Returns:
+    ///
+    /// the vertical position
+    pub fn get_vertical_position(&self) -> f64 {
+        self.vertical_position
+    }
+
     /// Indicates if the ball is moving.
     ///
     /// # Returns:
