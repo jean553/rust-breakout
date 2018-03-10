@@ -17,13 +17,10 @@ Vagrant.configure(2) do |config|
   config.ssh.insert_key = false
   config.vm.define "dev", primary: true do |app|
     app.vm.provider "docker" do |d|
-      d.image = "jean553/rust-dev-docker"
+      d.image = "allansimon/docker-dev-rust"
       d.name = "#{PROJECT}_dev"
       d.has_ssh = true
       d.env = DOCKER_ENV
-      d.volumes =  [
-        "#{ENV['PWD']}/:#{PROJECT_DIRECTORY}",
-      ]
     end
     app.ssh.username = "vagrant"
   end
