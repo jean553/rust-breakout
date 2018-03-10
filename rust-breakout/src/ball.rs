@@ -11,7 +11,6 @@ use display::Display;
 
 const RIGHT_BORDER_HORIZONTAL_POSITION: f64 = 1300.0;
 const LEFT_BORDER_HORIZONTAL_POSITION: f64 = 300.0;
-const TOP_BORDER_VERTICAL_POSITION: f64 = 0.0;
 
 pub struct Ball {
     circle: CircleArc,
@@ -120,42 +119,43 @@ impl Ball {
         self.vertical_position += self.vertical_direction;
     }
 
-    /// Indicates if the ball is touching a border of the game area
+    /// Indicates if the ball is touching the right border of the game area
     ///
     /// # Returns:
     ///
     /// True if the ball is touching a border,
     /// False if the ball is not touching any border
-    pub fn is_at_border(&self) -> bool {
+    pub fn is_at_right_border(&self) -> bool {
 
-        const BALL_WIDTH: f64 = 50.0;
+        const BALL_WIDTH: f64 = 20.0;
         let right_horizontal_position = self.horizontal_position + BALL_WIDTH;
 
-        if
-            right_horizontal_position > RIGHT_BORDER_HORIZONTAL_POSITION ||
-            self.horizontal_position < LEFT_BORDER_HORIZONTAL_POSITION ||
-            self.vertical_position < TOP_BORDER_VERTICAL_POSITION {
+        if right_horizontal_position > RIGHT_BORDER_HORIZONTAL_POSITION {
             return true;
         }
 
         false
     }
 
-    /// Inverts the direction of the ball
-    pub fn invert_direction(&mut self) {
+    /// Indicates if the ball is touching the left border of the game area
+    ///
+    /// # Returns:
+    ///
+    /// True if the ball is touching a border,
+    /// False if the ball is not touching any border
+    pub fn is_at_left_border(&self) -> bool {
 
-        const INVERT: f64 = -1.0;
-
-        const BALL_WIDTH: f64 = 15.0;
-        let right_horizontal_position = self.horizontal_position + BALL_WIDTH;
-
-        if
-            right_horizontal_position > RIGHT_BORDER_HORIZONTAL_POSITION ||
-            self.horizontal_position < LEFT_BORDER_HORIZONTAL_POSITION {
-            self.horizontal_direction *= INVERT;
-        } else if self.vertical_position < TOP_BORDER_VERTICAL_POSITION {
-            self.vertical_direction *= INVERT;
+        if self.horizontal_position - 5.0 < LEFT_BORDER_HORIZONTAL_POSITION {
+            return true;
         }
+
+        false
+    }
+
+    /// Horizontally inverts the ball direction
+    pub fn horizontally_invert_direction(&mut self) {
+        const INVERT: f64 = -1.0;
+        self.horizontal_direction *= INVERT;
     }
 
     /// Vertically inverts the ball direction

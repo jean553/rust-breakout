@@ -81,8 +81,12 @@ fn main() {
         let current_time = get_elapsed_time(&timer);
         if ball.is_moving() && current_time - last_time > ANIMATION_INTERVAL {
 
-            if ball.is_at_border() {
-                ball.invert_direction();
+            if ball.is_at_right_border() {
+                ball.horizontally_invert_direction();
+            }
+
+            if ball.is_at_left_border() {
+                ball.horizontally_invert_direction();
             }
 
             ball.update_position();
