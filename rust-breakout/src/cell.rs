@@ -14,8 +14,8 @@ pub struct Cell {
     vertical_position: f64,
 }
 
-const CELL_WIDTH: f64 = 49.0;
-const CELL_HEIGHT: f64 = 20.0;
+pub const WIDTH: f64 = 49.0;
+pub const HEIGHT: f64 = 20.0;
 
 impl Cell {
 
@@ -49,8 +49,17 @@ impl Cell {
     ) {
         const DEFAULT_HORIZONTAL_POSITION: f64 = 301.0;
         self.horizontal_position = DEFAULT_HORIZONTAL_POSITION +
-            horizontal_index as f64 * (CELL_WIDTH + 1.0);
-        self.vertical_position = vertical_index as f64 * (CELL_HEIGHT + 1.0);
+            horizontal_index as f64 * (WIDTH + 1.0);
+        self.vertical_position = vertical_index as f64 * (HEIGHT + 1.0);
+    }
+
+    /// Getter of the cell vertical position.
+    ///
+    /// # Returns:
+    ///
+    /// the vertical position of the cell
+    pub fn get_vertical_position(&self) -> f64 {
+        self.vertical_position
     }
 }
 
@@ -72,8 +81,8 @@ impl Display for Cell {
             [
                 self.horizontal_position,
                 self.vertical_position,
-                CELL_WIDTH,
-                CELL_HEIGHT,
+                WIDTH,
+                HEIGHT,
             ],
             &context.draw_state,
             context.transform,

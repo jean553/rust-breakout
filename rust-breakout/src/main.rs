@@ -81,10 +81,38 @@ fn main() {
         let current_time = get_elapsed_time(&timer);
         if ball.is_moving() && current_time - last_time > ANIMATION_INTERVAL {
 
+            if ball.is_at_right_border() {
+                ball.horizontally_invert_direction();
+            }
+
+            if ball.is_at_left_border() {
+                ball.horizontally_invert_direction();
+            }
+
             ball.update_position();
 
-            if ball.is_at_border() {
-                ball.invert_direction();
+            let ball_horizontal_position = ball.get_horizontal_position() -
+                separators::LEFT_SEPARATOR_HORIZONTAL_POSITION;
+
+            const DISTANCE_BETWEEN_CELLS: f64 = 50.0;
+            let ball_column =
+                (ball_horizontal_position / DISTANCE_BETWEEN_CELLS) as usize;
+
+            const COLUMN_LAST_CELL_INDEX: usize = 3;
+            let last_cell_index =
+                ball_column + (
+                    COLUMN_LAST_CELL_INDEX *
+                    CELLS_PER_LINE as usize
+                );
+
+            let last_cell_vertical_position =
+                cells[last_cell_index].get_vertical_position();
+            let last_cell_bottom =
+                last_cell_vertical_position + cell::HEIGHT * 2.0;
+
+            if ball.get_vertical_position() < last_cell_bottom {
+                ball.set_vertical_position(last_cell_bottom);
+                ball.vertically_invert_direction();
             }
 
             last_time = current_time;

@@ -14,6 +14,8 @@ pub struct Separators {
     right: Rectangle,
 }
 
+pub const LEFT_SEPARATOR_HORIZONTAL_POSITION: f64 = 300.0;
+
 impl Separators {
 
     /// Initializes the two separators
@@ -50,8 +52,6 @@ impl Display for Separators {
         const SEPARATOR_VERTICAL_POSITION: f64 = 0.0;
         const SEPARATOR_WIDTH: f64 = 1.0;
         const SEPARATOR_HEIGHT: f64 = 1600.0;
-
-        const LEFT_SEPARATOR_HORIZONTAL_POSITION: f64 = 300.0;
 
         self.left.draw(
             [
