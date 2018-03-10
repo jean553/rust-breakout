@@ -70,6 +70,15 @@ impl Ball {
         self.horizontal_position = position;
     }
 
+    /// Getter for the horizontal position of the cell.
+    ///
+    /// # Returns:
+    ///
+    /// the horizontal position
+    pub fn get_horizontal_position(&self) -> f64 {
+        self.horizontal_position
+    }
+
     /// Indicates if the ball is moving.
     ///
     /// # Returns:
