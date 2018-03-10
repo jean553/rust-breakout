@@ -124,11 +124,24 @@ fn main() {
             let last_cell_bottom =
                 last_cell_vertical_position + cell::HEIGHT * 2.0;
 
-            if ball.get_vertical_position() < last_cell_bottom {
+            let ball_vertical_position = ball.get_vertical_position();
+            let ball_horizontal_position = ball.get_horizontal_position();
+
+            let player_position = player.get_position();
+
+            if ball_vertical_position < last_cell_bottom {
                 ball.set_vertical_position(last_cell_bottom);
                 ball.vertically_invert_direction();
 
                 cells[last_cell_index].hide();
+            }
+            else if
+                ball_vertical_position + player::HEIGHT >
+                    player::PLAYER_VERTICAL_POSITION &&
+                ball_horizontal_position > player_position &&
+                ball_horizontal_position < player_position + player::WIDTH
+            {
+                ball.vertically_invert_direction();
             }
 
             last_time = current_time;
