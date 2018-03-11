@@ -75,6 +75,9 @@ fn main() {
     let mut last_time: u64 = 0;
     let timer = Instant::now();
 
+    let mut last_ball_column = 0;
+    let mut last_cell_index = 0;
+
     while let Some(event) = window.next() {
 
         const ANIMATION_INTERVAL: u64 = 40;
@@ -98,18 +101,24 @@ fn main() {
             let ball_column =
                 (ball_horizontal_position / DISTANCE_BETWEEN_CELLS) as usize;
 
-            /* FIXME: should handle the case when there is no cell into the column */
+            if ball_column != last_ball_column {
 
-            let mut last_cell_index = ball_column;
+                last_cell_index = ball_column;
 
-            const CELLS_PER_COLUMN: usize = 4;
-            for index in 1..(CELLS_PER_COLUMN + 1) {
+                /* FIXME: should handle the case when
+                   there is no cell into the column */
 
-                if !cells[index].is_visible() {
-                    break;
+                const CELLS_PER_COLUMN: usize = 5;
+                for _ in 1..CELLS_PER_COLUMN {
+
+                    if !cells[last_cell_index].is_visible() {
+                        break;
+                    }
+
+                    last_cell_index += CELLS_PER_LINE as usize;
                 }
 
-                last_cell_index += CELLS_PER_LINE as usize;
+                last_ball_column = ball_column;
             }
 
             let last_cell_vertical_position =
