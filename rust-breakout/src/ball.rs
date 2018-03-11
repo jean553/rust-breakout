@@ -99,6 +99,18 @@ impl Ball {
         self.vertical_position
     }
 
+    /// Setter of the ball horizontal direction.
+    ///
+    /// # Arguments:
+    ///
+    /// `direction` - the update horizontal direction
+    pub fn set_horizontal_direction(
+        &mut self,
+        direction: f64,
+    ) {
+        self.horizontal_direction = direction;
+    }
+
     /// Indicates if the ball is moving.
     ///
     /// # Returns:
