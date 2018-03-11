@@ -98,13 +98,6 @@ fn main() {
             let ball_column =
                 (ball_horizontal_position / DISTANCE_BETWEEN_CELLS) as usize;
 
-            const COLUMN_LAST_CELL_INDEX: usize = 3;
-            let last_cell_index =
-                ball_column + (
-                    COLUMN_LAST_CELL_INDEX *
-                    CELLS_PER_LINE as usize
-                );
-
             /* FIXME: should handle the case when there is no cell into the column */
 
             let mut last_cell_index = ball_column;
