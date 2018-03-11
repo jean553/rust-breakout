@@ -2,7 +2,12 @@
 
 # rust-breakout
 
+![Image 1](screenshot.png)
+
 A simple breakout video game developed using Rust.
+
+**NOTE**: This is only an experimental project only for learning purposes. 
+There is no goal to make something good or enjoyable, only something optimized.
 
 ## Compilation and development
 
