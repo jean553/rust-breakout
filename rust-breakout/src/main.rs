@@ -78,6 +78,13 @@ fn main() {
     let mut last_ball_column = 0;
     let mut last_cell_index = 0;
 
+    let mut update_column = true;
+
+    let mut last_cell_vertical_position =
+        cells[last_cell_index].get_vertical_position();
+    let mut last_cell_bottom =
+        last_cell_vertical_position + cell::HEIGHT * 2.0;
+
     while let Some(event) = window.next() {
 
         const ANIMATION_INTERVAL: u64 = 40;
@@ -101,7 +108,7 @@ fn main() {
             let ball_column =
                 (ball_horizontal_position / DISTANCE_BETWEEN_CELLS) as usize;
 
-            if ball_column != last_ball_column {
+            if ball_column != last_ball_column || update_column {
 
                 last_cell_index = ball_column;
 
@@ -111,24 +118,26 @@ fn main() {
                 const CELLS_PER_COLUMN: usize = 5;
                 for _ in 1..CELLS_PER_COLUMN {
 
-                    if !cells[last_cell_index].is_visible() {
+                    let index = last_cell_index + CELLS_PER_LINE as usize;
+
+                    if !cells[index].is_visible() {
                         break;
                     }
 
-                    last_cell_index += CELLS_PER_LINE as usize;
+                    last_cell_index = index;
                 }
 
+                last_cell_vertical_position =
+                    cells[last_cell_index].get_vertical_position();
+                last_cell_bottom =
+                    last_cell_vertical_position + cell::HEIGHT;
+
+                update_column = false;
                 last_ball_column = ball_column;
             }
 
-            let last_cell_vertical_position =
-                cells[last_cell_index].get_vertical_position();
-            let last_cell_bottom =
-                last_cell_vertical_position + cell::HEIGHT * 2.0;
-
             let ball_vertical_position = ball.get_vertical_position();
             let ball_horizontal_position = ball.get_horizontal_position();
-
             let player_position = player.get_position();
 
             if ball_vertical_position < last_cell_bottom {
@@ -136,6 +145,8 @@ fn main() {
                 ball.vertically_invert_direction();
 
                 cells[last_cell_index].hide();
+
+                update_column = true;
             }
             else if
                 ball_vertical_position + player::HEIGHT >
@@ -143,6 +154,30 @@ fn main() {
                 ball_horizontal_position > player_position &&
                 ball_horizontal_position < player_position + player::WIDTH
             {
+                if ball_horizontal_position < player_position + 20.0 {
+                    ball.set_horizontal_direction(-10.0);
+                }
+                else if
+                    ball_horizontal_position >= player_position + 20.0 &&
+                    ball_horizontal_position < player_position + 40.0
+                {
+                    ball.set_horizontal_direction(-5.0);
+                }
+                else if
+                    ball_horizontal_position >= player_position + 40.0 &&
+                    ball_horizontal_position < player_position + 60.0
+                {
+                    ball.set_horizontal_direction(0.0);
+                }
+                else if
+                    ball_horizontal_position >= player_position + 60.0 &&
+                    ball_horizontal_position < player_position + 80.0
+                {
+                    ball.set_horizontal_direction(5.0);
+                } else {
+                    ball.set_horizontal_direction(10.0);
+                }
+
                 ball.vertically_invert_direction();
             }
 
